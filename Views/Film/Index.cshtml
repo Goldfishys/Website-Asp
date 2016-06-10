@@ -1,0 +1,46 @@
+﻿@model WebsiteIMDB.Models.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Films</h2>
+
+<p class="col-md-2 col-md-offset-11">
+    @Html.ActionLink("AddFilm", "NewFilm")
+</p>
+<table class="table">
+    <tr onclick="location.href='@Url.Action()'">
+        <th>
+            @Html.DisplayNameFor(model => model.films[0].Titel)
+            <a class="glyphicon glyphicon-sort" href="@Url.Action("Index", new {Case = Model.sorted[0]})"></a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.films[0].ReleaseDate)
+            <a class="glyphicon glyphicon-sort" href="@Url.Action("Index", new {Case = Model.sorted[1] })"></a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.films[0].Rating)
+            <a class="glyphicon glyphicon-sort" href="@Url.Action("Index", new {Case = Model.sorted[2] })"></a>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.films) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) 
+        </td>
+    </tr>
+}
+
+</table>

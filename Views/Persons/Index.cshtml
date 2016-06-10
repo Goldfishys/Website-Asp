@@ -1,0 +1,39 @@
+﻿@model WebsiteIMDB.Models.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Persons</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Persons[0].Voornaam)
+            <a class="glyphicon glyphicon-sort" href="@Url.Action("Index", new {Case = Model.sorted[0] })"></a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persons[0].Achternaam)
+            <a class="glyphicon glyphicon-sort" href="@Url.Action("Index", new {Case = Model.sorted[1] })"></a>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Persons) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voornaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Achternaam)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
